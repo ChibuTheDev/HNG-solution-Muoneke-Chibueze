@@ -3,7 +3,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-image: radial-gradient(whitesmoke, #475569);
+    background-color: #d8d7d3;
 }
 .info {
     margin-bottom: 10px;
