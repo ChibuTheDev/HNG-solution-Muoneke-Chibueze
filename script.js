@@ -1,16 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const currentDayOfTheWeekElement = document.querySelector('[data-testid="currentDay"]');
-    const currentUTCTimeElement = document.querySelector('[data-testid="currentTimeUTC"]');
+function updateTimeAndDay() {
+    const currentTimeUTCElement = document.querySelector('[data-testid="currentTimeUTC"]');
+    const currentDayElement = document.querySelector('[data-testid="currentDay"]');
 
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const now = new Date();
+    const utcDate = now.toUTCString().split(' ').slice(0, 4).join(' ');
+    const utcTime = now.toUTCString().split(' ')[4];
+    const dayOfWeek = now.toLocaleString('en-US', { weekday: 'long' });
 
-    currentDayOfTheWeekElement.textContent = daysOfWeek[now.getUTCDay()];
-   
-    
-    const hours = now.getUTCHours().toString().padStart(2, '0');
-    const minutes = now.getUTCMinutes().toString().padStart(2, '0');
-    const seconds = now.getUTCSeconds().toString().padStart(2, '0');
-    currentUTCTimeElement.textContent = `${hours}:${minutes}:${seconds} UTC`;
+    currentTimeUTCElement.textContent = `${utcTime}`;
+    currentDayElement.textContent = `${dayOfWeek}`;
+}
+setInterval(updateTimeAndDay, 1000);
 
-});
+updateTimeAndDay();
